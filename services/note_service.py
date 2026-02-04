@@ -14,6 +14,17 @@ class NoteService:
         self.db.refresh(note)
         return note
 
+    def get_note_by_id(self, note_id: int):
+        return self.db.query(KnowledgeNote).filter(KnowledgeNote.id == note_id).first()
+
+    def update_note_status(self, note_id: int, status: str):
+        note = self.db.query(KnowledgeNote).filter(KnowledgeNote.id == note_id).first()
+        if note:
+            note.status = status
+            self.db.commit()
+            self.db.refresh(note)
+        return note
+
     def update_note_ai_data(self, note_id: int, category: str, tags: list, embedding: list):
         note = self.db.query(KnowledgeNote).filter(KnowledgeNote.id == note_id).first()
         if note:

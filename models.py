@@ -10,6 +10,7 @@ class KnowledgeNote(Base):
     category = Column(String(50), nullable=True)
     tags = Column(JSON, nullable=True)  # List of strings
     embedding = Column(JSON, nullable=True) # List of floats
+    status = Column(String(20), default="pending") # pending, completed, failed
     created_at = Column(DateTime, default=datetime.datetime.now)
     updated_at = Column(DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
     is_deleted = Column(Boolean, default=False, index=True)

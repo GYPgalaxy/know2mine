@@ -3,6 +3,7 @@ pandas
 sqlalchemy
 pymysql
 redis
+rq
 python-dotenv
 openai
 numpy
