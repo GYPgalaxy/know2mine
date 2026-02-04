@@ -2,10 +2,13 @@
 echo [INFO] Starting Smart Knowledge Hub...
 
 :: Check if containers are running
-docker-compose ps | findstr "Up" >nul
+docker compose ps | findstr "Up" >nul
 if %errorlevel% neq 0 (
     echo [INFO] Containers are not running. Starting them...
-    docker-compose up -d
+    docker compose up -d
+    if %errorlevel% neq 0 (
+         docker-compose up -d
+    )
 ) else (
     echo [INFO] Containers are already running.
 )

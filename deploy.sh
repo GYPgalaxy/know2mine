@@ -18,7 +18,14 @@ fi
 
 # Build and start containers
 echo "[INFO] Building and starting Docker containers..."
-docker-compose up -d --build
+if docker compose version &> /dev/null; then
+    docker compose up -d --build
+elif command -v docker-compose &> /dev/null; then
+    docker-compose up -d --build
+else
+    echo "[ERROR] Neither 'docker compose' nor 'docker-compose' found."
+    exit 1
+fi
 
 if [ $? -ne 0 ]; then
     echo "[ERROR] Failed to deploy containers."

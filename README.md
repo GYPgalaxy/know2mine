@@ -52,7 +52,7 @@ Built with **Streamlit** and powered by **AI**, it allows for quick text entry, 
 
 3.  **Start Services**
     ```bash
-    docker-compose up -d --build
+    docker compose up -d --build
     ```
     This will start:
     *   `knowledge_web`: The Streamlit app (Port 8501)
@@ -162,7 +162,7 @@ This project is licensed under the MIT License.
 
 3.  **启动服务**
     ```bash
-    docker-compose up -d --build
+    docker compose up -d --build
     ```
     这将启动：
     *   `knowledge_web`: Streamlit 应用 (端口 8501)

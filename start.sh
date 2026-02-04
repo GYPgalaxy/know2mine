@@ -4,7 +4,14 @@ echo "[INFO] Starting Smart Knowledge Hub..."
 
 # Start containers if not running
 echo "[INFO] Ensuring containers are up..."
-docker-compose up -d
+if docker compose version &> /dev/null; then
+    docker compose up -d
+elif command -v docker-compose &> /dev/null; then
+    docker-compose up -d
+else
+    echo "[ERROR] Docker Compose not found."
+    exit 1
+fi
 
 # Wait for a moment
 sleep 3

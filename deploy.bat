@@ -19,7 +19,12 @@ if not exist .env (
 
 :: Build and start containers
 echo [INFO] Building and starting Docker containers...
-docker-compose up -d --build
+docker compose up -d --build
+
+if %errorlevel% neq 0 (
+    echo [WARNING] 'docker compose' failed. Trying legacy 'docker-compose'...
+    docker-compose up -d --build
+)
 
 if %errorlevel% neq 0 (
     echo [ERROR] Failed to deploy containers.
