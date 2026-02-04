@@ -22,5 +22,14 @@ class Config:
     REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", None)
 
     # AI
+    AI_PROVIDER = os.getenv("AI_PROVIDER", "openai") # openai, gemini, claude
+    
+    # OpenAI
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL")
+    
+    # Gemini (Google)
+    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+    
+    # Claude (Anthropic)
+    ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")

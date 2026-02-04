@@ -28,6 +28,22 @@ ai_service = AIService()
 
 # Sidebar
 st.sidebar.title("🧠 Knowledge Hub")
+
+# AI Configuration Section
+st.sidebar.subheader("⚙️ Settings")
+ai_provider = st.sidebar.selectbox(
+    "AI Provider", 
+    ["openai", "gemini", "claude"], 
+    index=["openai", "gemini", "claude"].index(Config.AI_PROVIDER) if Config.AI_PROVIDER in ["openai", "gemini", "claude"] else 0
+)
+
+# Update config if changed (Note: This is per session/rerun, doesn't persist to .env)
+# In a real app, you might want to reload the AIService or update a singleton config
+if ai_provider != Config.AI_PROVIDER:
+    Config.AI_PROVIDER = ai_provider
+    # Re-initialize AI service
+    ai_service = AIService()
+
 page = st.sidebar.radio("Navigate", ["Knowledge Base", "Recycle Bin"])
 
 st.sidebar.markdown("---")

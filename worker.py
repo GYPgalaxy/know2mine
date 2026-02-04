@@ -36,6 +36,15 @@ def process_note_ai(note_id: int):
 
         # Process
         content = note.content
+        
+        # Note: Worker needs to pick up the correct provider. 
+        # Since Config is loaded at start, dynamic changes in UI might not propagate to worker 
+        # unless passed as arguments or stored in DB/Redis.
+        # For this phase, we assume the worker uses the default .env Config or we'd need to enhance architecture.
+        # To make it robust, we'll instantiate AIService inside the task, which reads Config.
+        # But Config.AI_PROVIDER is static from env. 
+        # IMPROVEMENT: Pass provider in the job arguments if per-request provider is needed.
+        
         ai_data = ai_service.classify_and_tag(content)
         embedding = ai_service.generate_embedding(content)
         
